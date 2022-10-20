@@ -6,8 +6,7 @@ import { PostService } from 'src/app/post.service';
 
 @Component({
   selector: 'app-show',
-  templateUrl: './show.component.html',
-  styleUrls: ['./show.component.css']
+  templateUrl: './show.component.html'
 })
 export class ShowComponent implements OnInit {
 
@@ -34,7 +33,7 @@ export class ShowComponent implements OnInit {
         };
       });
 
-      //console.log(this.Posts)
+      console.log(this.Posts)
     });
 
 

@@ -14,9 +14,6 @@ export class PostService {
 
   constructor(private angularFirestore:AngularFirestore) { }
 
-
-
-
   getPosts() {
     return this.angularFirestore
             .collection("posts")
@@ -33,7 +30,7 @@ export class PostService {
 
   createPost(post:Post)
   {
-      return new Promise <any>((resolve,reject) => {
+      return new Promise <any>((__resolve,reject) => {
         this.angularFirestore
         .collection("posts")
         .add(post)
@@ -56,9 +53,11 @@ export class PostService {
     .doc(id)
     .update({
 
-      title: post.title,
-      content:post.content,
-      author:post.author,
+      nombre: post.nombre,
+      descripcion:post.descripcion,
+      precio:post.precio,
+      unidades_dispo:post.unidades_dispo
+
 
     });
   }

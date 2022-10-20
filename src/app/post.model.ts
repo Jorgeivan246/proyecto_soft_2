@@ -1,13 +1,12 @@
 export class Post
 {
-
-
-
     id:string;
 
-    title:string;
+    nombre:string;
 
-    content:string;
+    descripcion:string;
 
-    author:string;
+    precio:string;
+
+    unidades_dispo:string;
 }

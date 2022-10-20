@@ -1,25 +1,26 @@
-<div class="d-grid gap-2 mt-4">
-  <a routerLink="/create" class="btn btn-primary" type="button">Create</a>
-</div>
 
-<table class="table table-hover table-striped">
+<table class="table table-dark" >
   <thead class="bg-gradient text-white">
     <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Author</th>
-      <th>Actions</th>
+      <th>Nombre</th>
+      <th>Descripcion</th>
+      <th>Precio</th>
+      <th>Unidades Disponibles</th>
+
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let post of Posts">
-      <td>{{ post.title }}</td>
-      <td>{{ post.content }}</td>
-      <td>{{ post.author }}</td>
+      <td>{{ post.nombre }}</td>
+      <td>{{ post.descripcion }}</td>
+      <td>{{ post.precio }}</td>
+      <td>{{ post.unidades_dispo }}</td>
       <td>
         <button routerLink="/edit/{{post.id}}" class="btn btn-outline-secondary">Editar</button>
         <button (click)="deleteRecord(post)" class="btn btn-outline-danger">Borrar</button>
       </td>
     </tr>
   </tbody>
+  <th><a routerLink="/create" class="btn btn-primary" type="button">Create</a></th>
 </table>
+
