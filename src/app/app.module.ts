@@ -9,29 +9,44 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from '../environments/environment';
 
+
+
+import{FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component'
+
+
 import { ShowComponent } from './components/show/show.component';
 import { CreateComponent } from './components/create/create.component';
 import { EditComponent } from './components/edit/edit.component';
-
-import{FormsModule,ReactiveFormsModule} from '@angular/forms'
-
+import { RouterModule } from '@angular/router';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { HomeLoginComponent } from './components/home-login/home-login.component';
 @NgModule({
   declarations: [
     AppComponent,
 
     ShowComponent,
     CreateComponent,
-    EditComponent
+    EditComponent,
+    RegisterComponent,
+    LoginComponent,
+    HomeLoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-
     AngularFireAuthModule,
     AngularFirestoreModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+
+    provideAuth(() => getAuth())
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
