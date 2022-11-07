@@ -8,21 +8,29 @@ import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signO
 })
 export class UserService {
 
+  sesionIniciada: boolean = false
+
   constructor(private auth: Auth) { }
 
   register({ email, password }: any) {
+    this.sesionIniciada=true;
     return createUserWithEmailAndPassword(this.auth, email, password);
   }
 
   login({ email, password }: any) {
+
+    this.sesionIniciada=true;
     return signInWithEmailAndPassword(this.auth, email, password);
+
   }
 
   loginWithGoogle() {
+    this.sesionIniciada=true;
     return signInWithPopup(this.auth, new GoogleAuthProvider());
   }
 
   logout() {
+    this.sesionIniciada=false;
     return signOut(this.auth);
   }
 

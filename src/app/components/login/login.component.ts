@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/user.service';
@@ -10,6 +10,8 @@ import { UserService } from 'src/app/user.service';
 })
 export class LoginComponent implements OnInit {
 
+
+  @Output() ponerNombre=new EventEmitter<any>();
 
   formLogin: FormGroup;
 
@@ -32,13 +34,15 @@ export class LoginComponent implements OnInit {
         console.log(response);
       })
       .catch(error => console.log(error));
+
+      this.ponerNombre.emit("salir")
   }
 
   onClick() {
     this.userService.loginWithGoogle()
       .then(response => {
         console.log(response);
-        this.router.navigate(['']);
+        this.router.navigate(['/home']);
       })
       .catch(error => console.log(error))
   }

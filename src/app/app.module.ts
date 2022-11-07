@@ -22,7 +22,9 @@ import { EditComponent } from './components/edit/edit.component';
 import { RouterModule } from '@angular/router';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideAuth,getAuth } from '@angular/fire/auth';
-import { HomeLoginComponent } from './components/home-login/home-login.component';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,8 @@ import { HomeLoginComponent } from './components/home-login/home-login.component
     EditComponent,
     RegisterComponent,
     LoginComponent,
-    HomeLoginComponent
+    NavbarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,13 @@ import { HomeLoginComponent } from './components/home-login/home-login.component
 
 
   ],
-  providers: [],
+
+  exports:[
+    NavbarComponent
+  ],
+  providers: [
+    { provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

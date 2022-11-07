@@ -6,20 +6,29 @@ import { CreateComponent } from './components/create/create.component';
 import { EditComponent } from './components/edit/edit.component';
 import { ShowComponent } from './components/show/show.component';
 import { LoginComponent } from './components/login/login.component';
-import { HomeLoginComponent } from './components/home-login/home-login.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
+import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+import { RegisterComponent } from './components/register/register.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 
 
 const routes: Routes = [
 
-  {path: '',component:ShowComponent},
-  {path: 'create',component:CreateComponent},
+  {path: '',component:HomeComponent},
+  {path: 'create',component:CreateComponent,
+
+  ...canActivate(() => redirectUnauthorizedTo(['']))
+    },
+  {path: 'show',component:ShowComponent},
   {path: 'edit/:id',component:EditComponent},
   {path: 'login',component:LoginComponent},
-  {path: 'register',component:LoginComponent},
-  {path: 'homeLo',component:HomeLoginComponent},
+  {path: 'register',component:RegisterComponent},
+
+
+
 
 ];
 
@@ -28,3 +37,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+
