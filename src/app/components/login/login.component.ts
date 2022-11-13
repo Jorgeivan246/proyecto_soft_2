@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/user.service';
@@ -10,40 +11,32 @@ import { UserService } from 'src/app/user.service';
 })
 export class LoginComponent implements OnInit {
 
-
-  @Output() ponerNombre=new EventEmitter<any>();
-
-  formLogin: FormGroup;
-
-  constructor(
-    private userService: UserService,
-    private router: Router
-  ) {
-    this.formLogin = new FormGroup({
-      email: new FormControl(),
-      password: new FormControl()
-    })
-  }
-
   ngOnInit(): void {
+
   }
 
-  onSubmit() {
-    this.userService.login(this.formLogin.value)
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => console.log(error));
+  constructor(public afAuth:AngularFireAuth, public router: Router, public auth:UserService) {
 
-      this.ponerNombre.emit("salir")
   }
 
-  onClick() {
-    this.userService.loginWithGoogle()
-      .then(response => {
-        console.log(response);
-        this.router.navigate(['/home']);
-      })
-      .catch(error => console.log(error))
+  async login(user:string, pass:string){
+    try{
+      await this.auth.login(user, pass);
+    // await this.router.navigateByUrl('administrador');
+    }catch(e: any){
+      alert("Correo o contraseña incorrecto");
+    }
   }
+
+  async regitrar(user:string, pass:string){
+    try{
+      await this.auth.registrar(user, pass);
+    //  await this.router.navigateByUrl('administrador');
+    }catch(e: any){
+      alert("Correo o contraseña incorrecto");
+    }
+  }
+
+
+
 }

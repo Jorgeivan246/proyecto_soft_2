@@ -1,0 +1,28 @@
+
+<table class="table table-dark" >
+  <thead class="bg-gradient text-white">
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Descripcion</th>
+      <th>Direccion</th>
+      <th>Tipo</th>
+      <th>Descripcion</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cita of citas">
+      <td>{{ cita.nombre }}</td>
+      <td>{{ cita.apellido }}</td>
+      <td>{{ cita.descripcion }}</td>
+      <td>{{ cita.tipo }}</td>
+      <td>{{ cita.descripcion }}</td>
+      <td>
+        <button routerLink="/edit/{{cita.id}}" class="btn btn-outline-secondary">Editar</button>
+        <button (click)="deleteRecord(cita)" class="btn btn-outline-danger">Borrar</button>
+      </td>
+    </tr>
+  </tbody>
+  <th><a routerLink="/citas" class="btn btn-primary" type="button">Create</a></th>
+</table>

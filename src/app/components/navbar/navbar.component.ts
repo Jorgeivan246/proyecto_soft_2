@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { user } from '@angular/fire/auth';
+import { User, user } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { NavBarService } from '../../nav-bar.service';
 import { UserService } from '../../user.service';
 
@@ -10,13 +11,25 @@ import { UserService } from '../../user.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public userService:UserService) { }
+  constructor(public auth:UserService,public authFire:AngularFireAuth) {
 
+
+  }
   ngOnInit(): void {
+
+  }
+
+
+  logOut()
+  {
+    this.auth.logOut();
   }
 
 
 
-  sesionIniciadaAux=this.userService.sesionIniciada;
+
+
+
+
 
 }

@@ -26,9 +26,9 @@
               <a class="nav-link active" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">Home</a>
             </li>
-            <li class="nav-item active"><a href="#" class="nav-link" routerLink="/login"  >Ingresar</a></li>
+            <li class="nav-item active"><a href="#" class="nav-link" *ngIf="authFire.authState" routerLink="/login"  >Ingresar</a></li>
 
-            <li class="nav-item active"><a href="#" class="nav-link" *ngIf="sesionIniciadaAux" routerLink="/show"  >Salir</a></li>
+            <li class="nav-item active"><a href="#" class="nav-link" *ngIf="authFire.authState " (click)="logOut()" routerLink=" "  >Salir</a></li>
 
             <li class="nav-item"><a href="#" class="nav-link" routerLink="/show">Productos</a></li>
             <li class="nav-item"><a href="#" class="nav-link" >Servicios</a></li>
